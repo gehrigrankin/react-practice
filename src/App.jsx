@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+
+import Radium, { StyleRoot } from 'radium';
 import './App.css';
 import Profile from './components/Profile/Profile'
 
@@ -55,6 +57,15 @@ class App extends Component {
     render() {
         let people = null;
 
+        const btnStyle = {
+            backgroundColor: 'green',
+            padding: '10px 20px',
+            margin: '10px',
+            ':hover': {
+                backgroundColor: 'blue'
+            }
+        }
+
         if (this.state.showProfiles){
             people = (
                 <div id="profiles">
@@ -70,17 +81,25 @@ class App extends Component {
                     })}
                 </div>
             );
+
+            btnStyle.backgroundColor = 'red';
+            btnStyle[":hover"] = {
+                backgroundColor: 'pink'
+            }
         }
+
+        
         
 
         return (
-            <div className="App">
-                <button onClick={this.showProfilesHandler}>Show Profiles</button><br/>
-                
-                {people}
-            </div>
+            <StyleRoot>
+                <div className="App">
+                    <button onClick={this.showProfilesHandler} style={btnStyle}>Show Profiles</button><br/>
+                    {people}
+                </div>
+            </StyleRoot>
         );
     }
 }
 
-export default App;
+export default Radium(App);

@@ -5,3 +5,9 @@
 #profiles {
   display: flex;
 }
+
+button {
+  padding: 20px;
+  border: 1px solid #eee;
+  background-color: green;
+}
