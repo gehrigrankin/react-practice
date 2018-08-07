@@ -24,7 +24,9 @@ class App extends Component {
                 occupation: "Server", 
                 aboutMe: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ut soluta quia, hic repudiandae eligendi alias. Accusamus possimus necessitatibus dolore quidem provident nostrum, deserunt unde numquam voluptas aut quos quo, nihil, sit corporis? Ipsa veritatis consequuntur voluptates debitis."
             }
-        ]
+        ],
+        showProfiles: false
+        
     }
 
     nameChangeHandler = (event , id) => {
@@ -44,19 +46,38 @@ class App extends Component {
         this.setState({people: people})
     }
 
+    showProfilesHandler = () => {
+        const showProfiles = this.state.showProfiles;
+
+        this.setState({showProfiles: !showProfiles})
+    }
+
     render() {
+        let people = null;
+
+        if (this.state.showProfiles){
+            people = (
+                <div id="profiles">
+                    {this.state.people.map((x) => {
+                        return (
+                            <Profile 
+                            name={x.name} 
+                            occupation={x.occupation} 
+                            aboutMe={x.aboutMe}
+                            change={(event) => this.nameChangeHandler(event, x.id)}
+                            key={x.id}/>
+                        )
+                    })}
+                </div>
+            );
+        }
+        
+
         return (
             <div className="App">
-                {this.state.people.map((x) => {
-                    return (
-                        <Profile 
-                        name={x.name} 
-                        occupation={x.occupation} 
-                        aboutMe={x.aboutMe}
-                        change={(event) => this.nameChangeHandler(event, x.id)}
-                        key={x.id}/>
-                    )
-                })}
+                <button onClick={this.showProfilesHandler}>Show Profiles</button><br/>
+                
+                {people}
             </div>
         );
     }

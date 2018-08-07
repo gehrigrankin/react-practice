@@ -1,5 +1,7 @@
 import React from "react";
 
+import './Profile.css';
+
 const Profile = props => (
     <div className="Profile">
         <input onChange={props.change} type="text"/>
