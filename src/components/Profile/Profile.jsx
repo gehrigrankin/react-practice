@@ -1,24 +1,25 @@
 import React from "react";
 
-import Radium from 'radium';
+import classes from './Profile.css';
 import './Profile.css';
 
 const Profile = props => {
 
-    const style = {
-        '@media (max-width: 600px)' : {
-            color: 'red'
-        }
-    }
+    // const style = {
+    //     '@media (max-width: 600px)' : {
+    //         color: 'red'
+    //     }
+    // }
 
     return (
-        <div className="Profile">
+        <div className={classes.Profile}>
             <input onChange={props.change} type="text"/>
-            <h1 style={style}>{props.name}</h1>
+            <h1>{props.name}</h1>
             <h3>{props.occupation}</h3>
             <p>{props.aboutMe}</p>
+            <button className={classes.button}>hello</button>
         </div>    
     )  
 };
 
-export default Radium(Profile);
+export default Profile;
